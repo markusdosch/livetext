@@ -26,7 +26,7 @@ function main() {
   const onUpdate = (update: ViewUpdate) => {
     socket.emit("text", getText(update));
   };
-  const throttledOnUpdate = throttle(onUpdate, 1000);
+  const throttledOnUpdate = throttle(onUpdate, 500);
   const updateListenerExtension = EditorView.updateListener.of((update) => {
     if (!update.docChanged) {
       return;
