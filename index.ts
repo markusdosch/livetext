@@ -7,6 +7,15 @@ const server = createServer(app);
 
 const io = new Server(server, { serveClient: false });
 
+// via https://fly.io/blog/always-be-connecting-with-https/
+app.use(function (req, res, next) {
+  if (req.get("X-Forwarded-Proto") == "http") {
+    // request was via http, so redirect to https
+    res.redirect("https://" + req.headers.host + req.url);
+  } else {
+    next();
+  }
+});
 app.use(express.static("public"));
 
 const livetexts = new Map<string, string>();
