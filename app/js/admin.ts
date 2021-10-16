@@ -3,6 +3,8 @@ import { EditorState } from "@codemirror/state";
 import { EditorView, basicSetup } from "@codemirror/basic-setup";
 import { language } from "@codemirror/language";
 import { markdownLanguage } from "@codemirror/lang-markdown";
+import { ViewUpdate } from "@codemirror/view";
+import { throttle } from "lodash";
 
 import "../css/mvp.css";
 
@@ -21,18 +23,15 @@ function main() {
 
   const socket = io(`/${room}`);
 
+  const onUpdate = (update: ViewUpdate) => {
+    socket.emit("text", getText(update));
+  };
+  const throttledOnUpdate = throttle(onUpdate, 1000);
   const updateListenerExtension = EditorView.updateListener.of((update) => {
-    if (update.docChanged) {
-      let text = [];
-
-      let iter = update.view.state.doc.iterLines();
-      while (!iter.done) {
-        text.push(iter.value);
-        iter.next();
-      }
-
-      socket.emit("text", text.join("\n"));
+    if (!update.docChanged) {
+      return;
     }
+    throttledOnUpdate(update);
   });
 
   const startState = EditorState.create({
@@ -45,10 +44,21 @@ function main() {
     ],
   });
 
-  const view = new EditorView({
+  new EditorView({
     state: startState,
     parent: document.querySelector("#editor"),
   });
+}
+
+function getText(update: ViewUpdate) {
+  const text = [];
+  const iter = update.view.state.doc.iterLines();
+  while (!iter.done) {
+    text.push(iter.value);
+    iter.next();
+  }
+  const finalText = text.join("\n");
+  return finalText;
 }
 
 main();
