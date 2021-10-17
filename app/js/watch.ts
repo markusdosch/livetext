@@ -4,6 +4,7 @@ import hljs from "highlight.js";
 import "../../node_modules/highlight.js/styles/default.css";
 
 import "../css/mvp.css";
+import "../css/styles.css";
 
 const md = MarkdownIt({
   linkify: true,

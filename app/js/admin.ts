@@ -7,6 +7,7 @@ import { ViewUpdate } from "@codemirror/view";
 import { throttle } from "lodash";
 
 import "../css/mvp.css";
+import "../css/styles.css";
 
 function main() {
   const params = new URL(document.location as any).searchParams;
