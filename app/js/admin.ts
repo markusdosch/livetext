@@ -8,6 +8,7 @@ import { throttle } from "lodash";
 
 import "../css/mvp.css";
 import "../css/styles.css";
+import "../css/admin.css";
 
 function main() {
   const params = new URL(document.location as any).searchParams;
@@ -21,6 +22,33 @@ function main() {
   document
     .querySelector("#watch-link")
     .setAttribute("href", `watch.html?room=${room}`);
+
+  document
+    .querySelector("#watch-link-input")
+    .setAttribute("value", `${window.location.host}/watch.html?room=${room}`);
+
+  document.querySelector("#copy-watch-link").addEventListener("click", () => {
+    const input = document.querySelector(
+      "#watch-link-input"
+    ) as HTMLInputElement;
+
+    // via https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+    input.select();
+    input.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(input.value);
+
+    const button = document.querySelector(
+      "#copy-watch-link"
+    ) as HTMLInputElement;
+    const oldValue = button.value;
+    button.value = "Copied 🎉";
+
+    window.setTimeout(() => {
+      button.value = oldValue;
+    }, 1000);
+  });
 
   const socket = io(`/${room}`);
 
