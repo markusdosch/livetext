@@ -12,7 +12,6 @@ npm run dev
 
 ### Features
 
-- Admin should receive updates as well => can have multiple admin tabs open
 - Protect admin page via code
 - Improve landing page
 

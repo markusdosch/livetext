@@ -36,7 +36,8 @@ const dynamicNsp = io.of(/^\/\w+-\w+$/).on("connection", (socket) => {
 
   socket.on("text", (text) => {
     livetexts.set(newNamespace.name, text);
-    newNamespace.emit("text", text);
+    // Emit text to all clients except sender
+    socket.broadcast.emit("text", text);
   });
 
   socket.on("disconnect", () => {

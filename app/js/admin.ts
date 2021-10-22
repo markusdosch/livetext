@@ -53,6 +53,15 @@ function main() {
   const socket = io(`/${room}`);
 
   const onUpdate = (update: ViewUpdate) => {
+    if (
+      !update.transactions.every((transaction) =>
+        transaction.isUserEvent("input")
+      )
+    ) {
+      // update was triggered by receiving text via websocket
+      return;
+    }
+
     socket.emit("text", getText(update));
   };
   const throttledOnUpdate = throttle(onUpdate, 500);
@@ -73,9 +82,17 @@ function main() {
     ],
   });
 
-  new EditorView({
+  const view = new EditorView({
     state: startState,
     parent: document.querySelector("#editor"),
+  });
+
+  socket.on("text", (text) => {
+    view.dispatch(
+      view.state.update({
+        changes: { from: 0, to: view.state.doc.length, insert: text },
+      })
+    );
   });
 }
 
@@ -86,7 +103,7 @@ function getText(update: ViewUpdate) {
     text.push(iter.value);
     iter.next();
   }
-  const finalText = text.join("\n");
+  const finalText = text.join("\n").trim();
   return finalText;
 }
 
