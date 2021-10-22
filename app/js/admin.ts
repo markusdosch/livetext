@@ -54,8 +54,9 @@ function main() {
 
   const onUpdate = (update: ViewUpdate) => {
     if (
-      !update.transactions.every((transaction) =>
-        transaction.isUserEvent("input")
+      !update.transactions.every(
+        (transaction) =>
+          transaction.isUserEvent("input") || transaction.isUserEvent("delete")
       )
     ) {
       // update was triggered by receiving text via websocket
