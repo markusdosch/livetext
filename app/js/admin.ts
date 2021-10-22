@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import { EditorState } from "@codemirror/state";
+import { AnnotationType, EditorState, Transaction } from "@codemirror/state";
 import { EditorView, basicSetup } from "@codemirror/basic-setup";
 import { language } from "@codemirror/language";
 import { markdownLanguage } from "@codemirror/lang-markdown";
@@ -54,12 +54,11 @@ function main() {
 
   const onUpdate = (update: ViewUpdate) => {
     if (
-      !update.transactions.every(
-        (transaction) =>
-          transaction.isUserEvent("input") || transaction.isUserEvent("delete")
+      !update.transactions.every((transaction) =>
+        transaction.annotation(Transaction.userEvent)
       )
     ) {
-      // update was triggered by receiving text via websocket
+      // if not every transaction was a userEvent => update was triggered by receiving text via websocket => ignore (do not re-emit)
       return;
     }
 
