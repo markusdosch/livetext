@@ -9,25 +9,27 @@
   </head>
 
   <body>
-    <header style="padding: 0 1rem">
-      <nav style="margin-bottom: 0">
-        <h3>livetext</h3>
-      </nav>
-    </header>
-    <main style="padding: 0 1rem 3rem 1rem">
+    <header>
+      <h1>livetext - streaming text to your audience</h1>
       <section>
-        <form method="GET" action="admin.html">
+        <form
+          method="GET"
+          action="admin.html"
+          style="text-align: center; font-size: x-large"
+        >
+          <label for="room">Session name</label>
           <input
+            id="room"
             name="room"
             pattern="\w+-\w+"
             placeholder="two-words"
-            value="hello-world"
+            value="tech-talk"
             required
           />
-          <input type="submit" value="Start session" />
+          <button type="submit" style="width: 100%">Host session</button>
         </form>
       </section>
-    </main>
+    </header>
     <footer style="text-align: center; padding: 0 1rem; font-size: small">
       <hr style="margin: 1rem 0" />
       <p>

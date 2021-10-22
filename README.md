@@ -13,7 +13,6 @@ npm run dev
 ### Features
 
 - Protect admin page via code
-- Improve landing page
 
 ### Scaling (low priority)
 
