@@ -1,0 +1,17 @@
+/* via https://github.com/andybrewer/mvp/issues/45 */
+input,
+label,
+select,
+textarea {
+  display: block;
+  font-size: inherit;
+  max-width: var(--width-card-wide);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  width: auto;
+}
