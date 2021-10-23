@@ -46,12 +46,27 @@
     <main style="padding: 0 1rem 3rem 1rem">
       <article>
         <div id="editor"></div>
-        <p style="font-size: small">
-          Syntax:
-          <a href="https://guides.github.com/features/mastering-markdown/"
-            >GitHub Flavored Markdown</a
-          >
-        </p>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            font-size: small;
+            margin-top: 5px;
+          "
+        >
+          <div>
+            Syntax:
+            <a href="https://guides.github.com/features/mastering-markdown/"
+              >GitHub Flavored Markdown</a
+            >
+          </div>
+          <input
+            style="display: block; margin: 0; margin-left: 5px"
+            type="button"
+            value="Load example"
+            id="load-example"
+          />
+        </div>
       </article>
     </main>
     <footer style="text-align: center; padding: 0 1rem; font-size: small">

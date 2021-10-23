@@ -94,6 +94,40 @@ function main() {
       })
     );
   });
+
+  document
+    .querySelector("#load-example")
+    .addEventListener("click", async () => {
+      const response = await fetch(
+        "https://raw.githubusercontent.com/markusdosch/livetext/main/README.md"
+      );
+      if (!response.ok) {
+        const button = document.querySelector(
+          "#load-example"
+        ) as HTMLInputElement;
+        const oldValue = button.value;
+        button.value = "Something went wrong 😞";
+
+        window.setTimeout(() => {
+          button.value = oldValue;
+        }, 1000);
+
+        return;
+      }
+
+      const text = await response.text();
+
+      view.dispatch(
+        view.state.update({
+          changes: {
+            from: 0,
+            to: view.state.doc.length,
+            insert: text,
+          },
+          userEvent: "input.paste",
+        })
+      );
+    });
 }
 
 function getText(update: ViewUpdate) {
