@@ -1,3 +1,6 @@
-.cm-editor {
-  font-size: 16px; /* via "Disable Auto Zoom in Input "Text" tag - Safari on iPhone", https://stackoverflow.com/a/6394497 */
+/* via https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone/6394497#comment89072459_16255670 */
+@supports (-webkit-overflow-scrolling: touch) {
+  .cm-editor {
+    font-size: 16px; /* via "Disable Auto Zoom in Input "Text" tag - Safari on iPhone", https://stackoverflow.com/a/6394497 */
+  }
 }

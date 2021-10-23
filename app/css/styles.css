@@ -1,5 +1,5 @@
 /* via https://github.com/andybrewer/mvp/issues/45 */
-input,
+input[type="text"],
 label,
 select,
 textarea {
