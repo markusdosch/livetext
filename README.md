@@ -19,10 +19,6 @@ npm install
 
 ```bash
 npm run dev
-
-# Production build & run
-npm run build
-npm start
 ```
 
 ### Run for production
