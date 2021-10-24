@@ -4,6 +4,8 @@ Stream text to your audience. Useful for talks, trainings, and more.
 
 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/) support: Text styling, code blocks, images...
 
+![livetext demo video](https://github.com/markusdosch/livetext/raw/master/assets/livetext.gif)
+
 ## How to run
 
 ### Preparation
