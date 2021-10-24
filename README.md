@@ -1,11 +1,33 @@
 # livetext
 
-Stream text to your audience. Useful for talks, trainings, and more...
+Stream text to your audience. Useful for talks, trainings, and more.
+
+[GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/) support: Text styling, code blocks, images...
 
 ## How to run
 
+### Preparation
+
+```bash
+nvm use # Requirement: nvm (Node Version Manager, https://github.com/nvm-sh/nvm)
+npm install
+```
+
+### Run for development
+
 ```bash
 npm run dev
+
+# Production build & run
+npm run build
+npm start
+```
+
+### Run for production
+
+```bash
+npm run build
+npm start
 ```
 
 ## Ideas for the future
