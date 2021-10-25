@@ -30,10 +30,7 @@ function main() {
     document.addEventListener(
 			"keydown",
 			(e) => {
-				if (
-					e.key === "s" &&
-					(navigator.userAgentData.platform.match("macOS") ? e.metaKey : e.ctrlKey)
-				) {
+				if (e.key === "s" && (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 					e.preventDefault();
 				}
 			},
