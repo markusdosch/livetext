@@ -27,6 +27,16 @@ function main() {
     .querySelector("#watch-link-input")
     .setAttribute("value", `${window.location.host}/watch.html?room=${room}`);
 
+    document.addEventListener(
+			"keydown",
+			(e) => {
+				if (e.key === "s" && (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+					e.preventDefault();
+				}
+			},
+			false
+		);
+
   document.querySelector("#copy-watch-link").addEventListener("click", () => {
     const input = document.querySelector(
       "#watch-link-input"
