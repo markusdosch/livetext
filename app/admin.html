@@ -13,31 +13,19 @@
       <nav style="margin-bottom: 0; display: flex; flex-wrap: wrap">
         <h3><a href="index.html">livetext</a> admin</h3>
         <div style="display: flex; align-items: center; font-size: small">
-          <div style="margin-right: 5px">
-            <a
-              style="display: block; margin-right: 5px"
-              value=""
-              id="watch-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Watch-URL</a
-            >
-          </div>
+          <div style="margin-right: 5px">Watch-URL:</div>
+          <a
+            style="display: block; margin-right: 5px"
+            value=""
+            id="watch-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Open in new tab</a
+          >
           <input
-            readonly
-            style="
-              display: block;
-              font-size: small;
-              margin: 0;
-              margin-right: 5px;
-            "
-            id="watch-link-input"
-            onclick="select()"
-          />
-          <input
-            style="display: block; margin: 0"
-            id="copy-watch-link"
-            value="📋"
+            style="display: none; font-size: x-small; margin: 0"
+            id="share-link"
+            value="Share"
             type="button"
           />
         </div>

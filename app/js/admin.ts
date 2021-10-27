@@ -23,42 +23,30 @@ function main() {
     .querySelector("#watch-link")
     .setAttribute("href", `watch.html?room=${room}`);
 
-  document
-    .querySelector("#watch-link-input")
-    .setAttribute("value", `${window.location.host}/watch.html?room=${room}`);
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (
+        e.key === "s" &&
+        (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
+      ) {
+        e.preventDefault();
+      }
+    },
+    false
+  );
 
-    document.addEventListener(
-			"keydown",
-			(e) => {
-				if (e.key === "s" && (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-					e.preventDefault();
-				}
-			},
-			false
-		);
-
-  document.querySelector("#copy-watch-link").addEventListener("click", () => {
-    const input = document.querySelector(
-      "#watch-link-input"
-    ) as HTMLInputElement;
-
-    // via https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-    input.select();
-    input.setSelectionRange(0, 99999); /* For mobile devices */
-
-    /* Copy the text inside the text field */
-    navigator.clipboard.writeText(input.value);
-
-    const button = document.querySelector(
-      "#copy-watch-link"
-    ) as HTMLInputElement;
-    const oldValue = button.value;
-    button.value = "Copied 🎉";
-
-    window.setTimeout(() => {
-      button.value = oldValue;
-    }, 1000);
-  });
+  if (navigator.share) {
+    const button = document.querySelector("#share-button") as HTMLInputElement;
+    button.style.display = "block";
+    button.addEventListener("click", () =>
+      navigator.share({
+        title: `livetext /${room}`,
+        text: `Visit session /${room}`,
+        url: `${window.location.host}/watch.html?room=${room}`,
+      })
+    );
+  }
 
   const socket = io(`/${room}`);
 
