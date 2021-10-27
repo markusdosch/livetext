@@ -39,36 +39,34 @@ function main() {
     false
   );
 
-  document
-    .querySelector("#share-button")
-    .addEventListener("click", async () => {
-      try {
-        await (navigator.share as any)(
-          // `any` because of `share-api-polyfill`
-          {
-            title: `livetext watch: ${room}`,
-            url: `${window.location.origin}/watch.html?room=${room}`,
-          },
-          {
-            copy: true,
-            email: true,
-            print: false,
-            sms: false,
-            messenger: false,
-            facebook: false,
-            whatsapp: false,
-            twitter: false,
-            linkedin: false,
-            telegram: false,
-            skype: false,
-            pinterest: false,
-            language: "en",
-          }
-        );
-      } catch (e) {
-        console.error(e);
-      }
-    });
+  document.querySelector("#copy-button").addEventListener("click", async () => {
+    try {
+      await (navigator.share as any)(
+        // `any` because of `share-api-polyfill`
+        {
+          title: `livetext watch: ${room}`,
+          url: `${window.location.origin}/watch.html?room=${room}`,
+        },
+        {
+          copy: true,
+          email: true,
+          print: false,
+          sms: false,
+          messenger: false,
+          facebook: false,
+          whatsapp: false,
+          twitter: false,
+          linkedin: false,
+          telegram: false,
+          skype: false,
+          pinterest: false,
+          language: "en",
+        }
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  });
 
   document.querySelector("#room-name").textContent = `${room}`;
 
