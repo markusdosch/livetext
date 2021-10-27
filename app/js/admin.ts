@@ -42,9 +42,8 @@ function main() {
     (navigator.share as any)(
       // `any` because of `share-api-polyfill`
       {
-        title: `livetext /${room}`,
-        text: `Visit session /${room}`,
-        url: `${window.location.host}/watch.html?room=${room}`,
+        title: `livetext watch /${room}`,
+        url: `${window.location.origin}/watch.html?room=${room}`,
       },
       {
         copy: true,
