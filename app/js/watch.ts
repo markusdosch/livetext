@@ -26,8 +26,11 @@ function main() {
 
   if (!room) {
     console.error("No room specified.");
+    alert("No room specified");
     return;
   }
+
+  document.querySelector("#room-name").textContent = `${room}`;
 
   const socket = io(`/${room}`);
   socket.on("text", (text) => {
