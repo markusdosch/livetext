@@ -1,6 +1,7 @@
 import * as express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import * as morgan from "morgan";
 
 const app = express();
 const server = createServer(app);
@@ -16,14 +17,18 @@ app.use(function (req, res, next) {
     next();
   }
 });
+
+app.use(
+  morgan("combined", {
+    skip: (req, res) => !(req.path === "/") && !req.path.includes(".html"), // Only log requests to "/" & to `.html` routes
+  })
+);
 app.use(express.static("public"));
 
 const livetexts = new Map<string, string>();
 
 const dynamicNsp = io.of(/^\/\w+-\w+$/).on("connection", (socket) => {
   const newNamespace = socket.nsp;
-
-  console.log(newNamespace.name);
 
   socket.emit("notice", { name: newNamespace.name });
   if (livetexts.has(newNamespace.name)) {
