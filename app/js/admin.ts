@@ -13,7 +13,7 @@ import "../css/styles.css";
 import "../css/admin.css";
 
 function main() {
-  const params = new URL(document.location as any).searchParams;
+  const params = new URL(window.location as any).searchParams;
   const room = params.get("room");
 
   if (!room) {

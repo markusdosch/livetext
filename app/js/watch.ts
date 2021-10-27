@@ -21,7 +21,7 @@ const md = MarkdownIt({
 });
 
 function main() {
-  const params = new URL(document.location as any).searchParams;
+  const params = new URL(window.location as any).searchParams;
   const room = params.get("room");
 
   if (!room) {
