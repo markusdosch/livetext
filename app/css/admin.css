@@ -4,3 +4,8 @@
     font-size: 16px; /* via "Disable Auto Zoom in Input "Text" tag - Safari on iPhone", https://stackoverflow.com/a/6394497 */
   }
 }
+
+/* Button color was broken with default settings */
+#shareAPIPolyfill-container button {
+  color: black;
+}

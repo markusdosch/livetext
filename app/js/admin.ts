@@ -6,6 +6,8 @@ import { markdownLanguage } from "@codemirror/lang-markdown";
 import { ViewUpdate } from "@codemirror/view";
 import { throttle } from "lodash";
 
+import "share-api-polyfill";
+
 import "../css/mvp.css";
 import "../css/styles.css";
 import "../css/admin.css";
@@ -36,17 +38,31 @@ function main() {
     false
   );
 
-  if (navigator.share) {
-    const button = document.querySelector("#share-button") as HTMLInputElement;
-    button.style.display = "block";
-    button.addEventListener("click", () =>
-      navigator.share({
+  document.querySelector("#share-button").addEventListener("click", () =>
+    (navigator.share as any)(
+      // `any` because of `share-api-polyfill`
+      {
         title: `livetext /${room}`,
         text: `Visit session /${room}`,
         url: `${window.location.host}/watch.html?room=${room}`,
-      })
-    );
-  }
+      },
+      {
+        copy: true,
+        email: true,
+        print: false,
+        sms: false,
+        messenger: false,
+        facebook: false,
+        whatsapp: false,
+        twitter: false,
+        linkedin: false,
+        telegram: false,
+        skype: false,
+        pinterest: false,
+        language: "en",
+      }
+    )
+  );
 
   const socket = io(`/${room}`);
 
