@@ -27,7 +27,7 @@ app.use(express.static("public"));
 
 const livetexts = new Map<string, string>();
 
-const dynamicNsp = io.of(/^\/\w+-\w+$/).on("connection", (socket) => {
+const dynamicNsp = io.of(/^\/\w+(-\w+)*$/).on("connection", (socket) => {
   const newNamespace = socket.nsp;
 
   socket.emit("notice", { name: newNamespace.name });
