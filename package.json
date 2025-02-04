@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Stream text to your audience",
   "scripts": {
+    "postinstall": "npm run build",
     "dev": "npm-run-all --parallel serve:*",
     "serve:server": "npx ts-node-dev --respawn index.ts",
     "serve:client": "npm run clean && npx parcel watch 'app/*.html' --dist-dir public",
     "build": "npm run clean && npx parcel build 'app/*.html' --dist-dir public",
-    "clean": "rm -rf public/ && mkdir public/",
-    "start": "pm2-runtime --interpreter node_modules/.bin/ts-node ./index.ts"
+    "clean": "rm -rf public/ && mkdir public/"
   },
   "author": "Markus Dosch <mail@markusdosch.com>",
   "license": "ISC",
@@ -39,10 +39,17 @@
     "typescript": "^4.4.4"
   },
   "targets": {
-    "main": false
+    "default": {
+      "engines": {
+        "browsers": ">= 50%"
+      }
+    }
   },
   "staticFiles": {
     "staticPath": "static",
     "distDir": "public"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
