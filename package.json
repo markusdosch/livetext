@@ -9,7 +9,7 @@
     "serve:client": "npm run clean && npx parcel watch 'app/*.html' --dist-dir public",
     "build": "npm run clean && npx parcel build 'app/*.html' --dist-dir public",
     "clean": "rm -rf public/ && mkdir public/",
-    "start": "npx ts-node --optimize_for_size --max_old_space_size=460 --gc_interval=100 index.ts"
+    "start": "npx ts-node index.ts"
   },
   "author": "Markus Dosch <mail@markusdosch.com>",
   "license": "ISC",
