@@ -56,7 +56,7 @@ const dynamicNsp = io.of(/^\/\w+(-\w+)*$/).on("connection", (socket) => {
   });
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`server started on http://localhost:${PORT}`);
 });
