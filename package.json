@@ -8,7 +8,8 @@
     "serve:server": "npx ts-node-dev --respawn index.ts",
     "serve:client": "npm run clean && npx parcel watch 'app/*.html' --dist-dir public",
     "build": "npm run clean && npx parcel build 'app/*.html' --dist-dir public",
-    "clean": "rm -rf public/ && mkdir public/"
+    "clean": "rm -rf public/ && mkdir public/",
+    "start": "npx ts-node --optimize_for_size --max_old_space_size=460 --gc_interval=100 index.ts"
   },
   "author": "Markus Dosch <mail@markusdosch.com>",
   "license": "ISC",
